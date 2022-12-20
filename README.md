@@ -1,3 +1,4 @@
-# Pascal's triangle
+# Interview Questions
 
-Contains python script that prints out n levels of pascal's triangle
+## Topics
+- [Pascal's triangle](./0-pascal_triangle.py) - script for printing out n levels of pascal's triangle
