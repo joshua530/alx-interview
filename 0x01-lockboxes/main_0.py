@@ -19,3 +19,9 @@ print(canUnlockAll(boxes))
 
 boxes = [[1],[]]
 print(canUnlockAll(boxes))
+
+boxes = [[8],[2],[]]
+print(canUnlockAll(boxes))
+
+boxes = [[8,1],[2],[]]
+print(canUnlockAll(boxes))
