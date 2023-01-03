@@ -23,12 +23,12 @@ def canUnlockAll(boxes):
 
     while current_key_i < len(keys):
         key = keys[current_key_i]
+        # unlock the box and add its keys to the list of keys for unlocking
+        # other boxes
         if key < len(boxes):
-            # unlock the box and add its keys to the list of keys for unlocking
-            # other boxes
+            # if we've already opened a box, opening it again will just
+            # cause key duplication and an infinite loop so we avoid it
             if str(key) not in unlocked_boxes:
-                # if we've already opened a box, opening it again will just
-                # cause key duplication and an infinite loop so we don't do it
                 keys += boxes[key]
                 unlocked_boxes[str(key)] = True
                 unlocked_boxes_count += 1
