@@ -13,7 +13,7 @@ def minOperations(n):
         return 0
 
     best_ops = int(n / 1)  # current best number of operations
-    total_ops = 1  # 1 for copying the very first character
+    total_ops = 1  # initialized to 1 for copying the very first character
     i = 1  # current position in the string
     best_i = 1  # i value that will give us the least number of operations
 
