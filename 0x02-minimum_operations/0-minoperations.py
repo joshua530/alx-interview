@@ -9,7 +9,7 @@ of operations needed to result in exactly n H characters in the file.
 
 def minOperations(n):
     '''finds minimum number of operations'''
-    if n < 1:
+    if n < 1 or not isinstance(n, int):
         return 0
 
     best_ops = int(n / 1)  # current best number of operations
