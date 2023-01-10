@@ -12,16 +12,16 @@ def minOperations(n):
     if n < 1:
         return 0
 
-    best_ops = int(n / 1) # current best number of operations
-    total_ops = 1 # 1 for copying the very first character
-    i = 1 # current position in the string
-    best_i = 1 # will give us the least number of operations
+    best_ops = int(n / 1)  # current best number of operations
+    total_ops = 1  # 1 for copying the very first character
+    i = 1  # current position in the string
+    best_i = 1  # will give us the least number of operations
 
     while i < n:
         if n % i == 0 and n / i < best_ops:
             # we've found a new optimal number
             best_ops = int(n / i)
-            total_ops += 2 # for the initial copy and paste operation
+            total_ops += 2  # for the initial copy and paste operation
             best_i = i
         else:
             # just paste our current best
