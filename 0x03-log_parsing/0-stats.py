@@ -16,7 +16,7 @@ log_format = (
 
 total_file_size = 0
 pos = 0
-status_code_count = {
+status_codes = {
     '200': 0, '301': 0, '400': 0, '401': 0,
     '403': 0, '404': 0, '405': 0, '500': 0
 }
@@ -25,10 +25,10 @@ status_code_count = {
 def print_stats(sig=None, frame=None):
     '''prints required log stats'''
     print('File size: {}'.format(total_file_size))
-    keys = sorted(status_code_count.keys())
+    keys = sorted(status_codes.keys())
     for i in range(len(keys)):
-        if status_code_count[keys[i]] != 0:
-            print('{}: {}'.format(keys[i], status_code_count[keys[i]]))
+        if status_codes[keys[i]] != 0:
+            print('{}: {}'.format(keys[i], status_codes[keys[i]]))
 
 
 signal.signal(signal.SIGINT, print_stats)
@@ -39,7 +39,7 @@ for line in sys.stdin:
     if matches:
         status_code = matches.group(3)
         file_size = matches.group(4)
-        status_code_count[status_code] += 1
+        status_codes[status_code] += 1
         total_file_size += int(file_size)
     if pos != 0 and pos % 10 == 0:
         print_stats()
