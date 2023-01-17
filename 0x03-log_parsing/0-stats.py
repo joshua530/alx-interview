@@ -19,9 +19,9 @@ def print_stats():
     print('File size: {}'.format(total_file_size))
     keys = sorted(status_codes.keys())
     for i in range(len(keys)):
-        status_code = status_codes[keys[i]]
-        if status_code in status_codes and status_codes[keys[i]] != 0:
-            print('{}: {}'.format(keys[i], status_codes[keys[i]]))
+        code = keys[i]
+        if status_codes[code] != 0:
+            print('{}: {}'.format(code, status_codes[code]))
 
 
 try:
