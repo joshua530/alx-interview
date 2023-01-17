@@ -29,6 +29,7 @@ def print_stats():
         if status_code in status_codes and status_codes[keys[i]] != 0:
             print('{}: {}'.format(keys[i], status_codes[keys[i]]))
 
+
 try:
     for line in sys.stdin:
         pos += 1
