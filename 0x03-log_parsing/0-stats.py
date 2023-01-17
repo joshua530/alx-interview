@@ -7,7 +7,6 @@ import sys
 
 
 total_file_size = 0
-pos = 0
 status_codes = {
     '200': 0, '301': 0, '400': 0, '401': 0,
     '403': 0, '404': 0, '405': 0, '500': 0
@@ -32,7 +31,7 @@ try:
             file_size = int(matches[-1])
             if status_code in status_codes.keys():
                 status_codes[status_code] += 1
-                total_file_size += file_size
+            total_file_size += file_size
         except Exception:
             pass
         if pos % 10 == 0:
