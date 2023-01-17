@@ -26,14 +26,16 @@ def print_stats():
 try:
     for pos, line in enumerate(sys.stdin, start=1):
         matches = [tmp_line.strip() for tmp_line in line.split()]
-        status_code = matches[-2]
-        file_size = matches[-1]
-        if status_code in status_codes.keys():
-            status_codes[status_code] += 1
-            total_file_size += int(file_size)
+        try:
+            status_code = matches[-2]
+            file_size = int(matches[-1])
+            if status_code in status_codes.keys():
+                status_codes[status_code] += 1
+                total_file_size += file_size
+        except Exception:
+            pass
         if pos % 10 == 0:
             print_stats()
+    print_stats()
 except KeyboardInterrupt:
     print_stats()
-except Exception:
-    pass
