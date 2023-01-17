@@ -5,7 +5,6 @@ computes metrics using log formatted input from stdin
 
 import re
 import sys
-import signal
 
 
 log_format = (
@@ -22,24 +21,24 @@ status_codes = {
 }
 
 
-def print_stats(sig=None, frame=None):
+def print_stats():
     '''prints required log stats'''
     print('File size: {}'.format(total_file_size))
     keys = sorted(status_codes.keys())
     for i in range(len(keys)):
-        if status_codes[keys[i]] != 0:
+        if status_code in status_codes and status_codes[keys[i]] != 0:
             print('{}: {}'.format(keys[i], status_codes[keys[i]]))
 
-
-signal.signal(signal.SIGINT, print_stats)
-
-for line in sys.stdin:
-    pos += 1
-    matches = re.match(log_format, line)
-    if matches:
-        status_code = matches.group(3)
-        file_size = matches.group(4)
-        status_codes[status_code] += 1
-        total_file_size += int(file_size)
-    if pos != 0 and pos % 10 == 0:
-        print_stats()
+try:
+    for line in sys.stdin:
+        pos += 1
+        matches = re.match(log_format, line)
+        if matches:
+            status_code = matches.group(3)
+            file_size = matches.group(4)
+            status_codes[status_code] += 1
+            total_file_size += int(file_size)
+        if pos != 0 and pos % 10 == 0:
+            print_stats()
+except KeyboardInterrupt:
+    print_stats()
