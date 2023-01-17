@@ -3,15 +3,8 @@
 computes metrics using log formatted input from stdin
 '''
 
-import re
 import sys
 
-
-log_format = (
-    r'^([0-9]{1,3}\.){3}([0-9]{1,3}) - \[[0-9]{4}-[0-9]{2}-[0-9]{2} '
-    r'[0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]+\] "GET /projects/260 HTTP/1.1"'
-    r' ([2-5]0[01345]) ([1-9][0-9]?[0-9]?[0-4]?)$'
-)
 
 total_file_size = 0
 pos = 0
@@ -31,15 +24,16 @@ def print_stats():
 
 
 try:
-    for line in sys.stdin:
-        pos += 1
-        matches = re.match(log_format, line)
-        if matches:
-            status_code = matches.group(3)
-            file_size = matches.group(4)
+    for pos, line in enumerate(sys.stdin, start=1):
+        matches = [tmp_line.strip() for tmp_line in line.split()]
+        status_code = matches[-2]
+        file_size = matches[-1]
+        if status_code in status_codes.keys():
             status_codes[status_code] += 1
             total_file_size += int(file_size)
-        if pos != 0 and pos % 10 == 0:
+        if pos % 10 == 0:
             print_stats()
 except KeyboardInterrupt:
     print_stats()
+except Exception:
+    pass
