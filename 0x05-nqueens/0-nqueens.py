@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""
+Contains nqueens solution
+"""
 import sys
 # from pprint import pprint
 
@@ -73,7 +76,7 @@ def n_queen():
     Return: None
     """
     board = []
-    for row in range(N):
+    for _ in range(N):
         board.append([0] * N)
     # print()
     if not Solver(board, 0):
