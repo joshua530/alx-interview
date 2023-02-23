@@ -1,0 +1,18 @@
+# dumb!
+    num_coins = 0
+    left_over_amount = total
+    coins.sort(reverse=True)
+
+    for i in range(len(coins)):
+        denom = coins[i]
+        if left_over_amount == 0:
+            break
+        if left_over_amount > denom:
+            num_denoms = left_over_amount // denom
+            num_coins += num_denoms
+            left_over_amount -= (denom * num_denoms)
+
+    if left_over_amount != 0:
+        return -1
+
+    return num_coins
