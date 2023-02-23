@@ -4,10 +4,7 @@ making change solution
 '''
 
 
-from typing import Dict, List
-
-
-def makeChange(coins: List[int], total: int) -> int:
+def makeChange(coins, total):
     '''
     making change solution function
     '''
