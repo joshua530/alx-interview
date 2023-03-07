@@ -8,6 +8,8 @@ def isWinner(x, nums):
     '''
     Returns the name of the winner
     '''
+    if len(nums) == 0:
+        return 'Ben'
     wins = {'Maria': 0, 'Ben': 0}
     for i in range(x):
         winner = play(nums[i])
@@ -50,7 +52,7 @@ def play(n):
 
 def isPrime(n):
     '''checks whether a given number is a prime number'''
-    if n == 1:
+    if n == 1 or n == 0:
         return False
     if n == 2 or n == 3:
         return True
